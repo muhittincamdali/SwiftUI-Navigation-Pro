@@ -1,54 +1,107 @@
-<div align="center">
+<p align="center">
+  <img src="Assets/logo.png" alt="SwiftUI Navigation Pro" width="200"/>
+</p>
 
-# 🧭 SwiftUI-Navigation-Pro
+<h1 align="center">SwiftUI Navigation Pro</h1>
 
-**Production navigation framework for SwiftUI with deep linking & state restoration**
+<p align="center">
+  <strong>🧭 Production navigation framework for SwiftUI with deep linking & state restoration</strong>
+</p>
 
-[![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
-[![iOS](https://img.shields.io/badge/iOS-16.0+-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
-[![SPM](https://img.shields.io/badge/SPM-Compatible-FA7343?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org/package-manager/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-
-</div>
-
----
-
-## ✨ Features
-
-- 🧭 **Type-Safe Navigation** — Compile-time checked routes
-- 🔗 **Deep Linking** — Universal & custom URL schemes
-- 💾 **State Restoration** — Auto-persist navigation state
-- 📱 **Tab & Stack** — Support for all navigation patterns
-- 🎯 **Coordinator Pattern** — Clean separation of concerns
+<p align="center">
+  <img src="https://img.shields.io/badge/Swift-6.0-orange.svg" alt="Swift"/>
+  <img src="https://img.shields.io/badge/iOS-17.0+-blue.svg" alt="iOS"/>
+</p>
 
 ---
 
-## 🚀 Quick Start
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| 🎯 **Type-Safe** | Compile-time route validation |
+| 🔗 **Deep Linking** | URL scheme & universal links |
+| 💾 **State Restoration** | Automatic persistence |
+| 📱 **Tab + Stack** | Combined navigation patterns |
+| ⚡ **Async** | Async navigation support |
+
+## Quick Start
 
 ```swift
 import SwiftUINavigationPro
 
-enum AppRoute: Routable {
-    case home, profile(id: String), settings
-}
-
-struct ContentView: View {
+@main
+struct MyApp: App {
     @StateObject var navigator = Navigator<AppRoute>()
     
-    var body: some View {
-        RouterView(navigator: navigator) { route in
-            switch route {
-            case .home: HomeView()
-            case .profile(let id): ProfileView(id: id)
-            case .settings: SettingsView()
+    var body: some Scene {
+        WindowGroup {
+            NavigatorView(navigator: navigator) { route in
+                switch route {
+                case .home: HomeView()
+                case .profile(let id): ProfileView(id: id)
+                case .settings: SettingsView()
+                }
             }
+            .onOpenURL { navigator.handle($0) }
         }
     }
 }
 ```
 
----
+## Navigation
 
-## 📄 License
+```swift
+// Push
+navigator.push(.profile(id: "123"))
 
-MIT • [@muhittincamdali](https://github.com/muhittincamdali)
+// Pop
+navigator.pop()
+navigator.popToRoot()
+
+// Present
+navigator.present(.settings, style: .sheet)
+navigator.present(.login, style: .fullScreen)
+
+// Dismiss
+navigator.dismiss()
+```
+
+## Deep Linking
+
+```swift
+enum AppRoute: Route {
+    case home
+    case profile(id: String)
+    
+    init?(url: URL) {
+        switch url.path {
+        case "/": self = .home
+        case let path where path.hasPrefix("/profile/"):
+            self = .profile(id: String(path.dropFirst(9)))
+        default: return nil
+        }
+    }
+}
+```
+
+## Tab Navigation
+
+```swift
+TabNavigatorView(selection: $tab) {
+    Tab(.home, icon: "house") {
+        NavigatorView(navigator: homeNav) { ... }
+    }
+    Tab(.search, icon: "magnifyingglass") {
+        NavigatorView(navigator: searchNav) { ... }
+    }
+}
+```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT License
