@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/muhittincamdali/SwiftUI-Navigation-Pro/main/Assets/logo.png" alt="SwiftUI Navigation Pro" width="180"/>
-</p>
-
 <h1 align="center">SwiftUI Navigation Pro</h1>
 
 <p align="center">
