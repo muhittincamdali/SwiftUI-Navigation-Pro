@@ -10,6 +10,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - visionOS navigation support
 
+## [1.1.0] - 2025-02-06
+
+### Added
+- **Side Menu Navigation** - Full drawer-style navigation with gesture support
+  - `SideMenuCoordinator` for state management
+  - `SideMenuContainer` view
+  - Configurable animations and 3D effects
+  - Swipe gestures for open/close
+- **UIKit Bridge** - SwiftUI ↔ UIKit interoperability
+  - `UIKitNavigationBridge` for mixed navigation
+  - Custom transition animators
+  - `UIKitViewControllerBridge` and `UIKitViewBridge` representables
+- **Navigation Recording & Playback**
+  - `NavigationRecorder` for capturing user journeys
+  - `NavigationPlayer` for replaying sessions
+  - Session persistence and export
+  - Analytics aggregation utilities
+- **Crash Recovery**
+  - `CrashRecoveryManager` for state persistence
+  - Configurable recovery policies
+  - `SafeNavigator` wrapper for automatic state saving
+- **A/B Testing Support**
+  - `NavigationABTestingManager` for experiments
+  - Variant assignment with weights
+  - Event tracking for conversions
+  - `FlowExperimentBuilder` for easy setup
+
+### Fixed
+- CHANGELOG repository links corrected
+
 ## [1.0.0] - 2024-01-15
 
 ### Added
@@ -30,5 +60,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Protocol-oriented design
 - Full async/await support
 
-[Unreleased]: https://github.com/muhittincamdali/SwiftRouter/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/muhittincamdali/SwiftRouter/releases/tag/v1.0.0
+[Unreleased]: https://github.com/muhittincamdali/SwiftUI-Navigation-Pro/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/muhittincamdali/SwiftUI-Navigation-Pro/releases/tag/v1.0.0
