@@ -6,6 +6,8 @@
 
 ---
 
+## 🚀 Killer Feature: State-Driven Deep Linking
+Stop fighting `onOpenURL`. Our navigation engine automatically parses incoming universal links and translates them directly into strongly-typed `NavigationPath` mutations.
 > **🛡️ PART OF THE 2026 UNIFIED CORE**
 > This repository is a verified component of 'The Endless March' initiative. Purified for Swift 6, zero-dependency, and engineered for maximum hardware saturation.
 > 
